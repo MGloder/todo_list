@@ -1,5 +1,6 @@
-from flask import Flask, redirect, url_for
-from routes import todos_routes
+from flask import Flask
+
+from app.routes import todos_routes
 
 app = Flask(__name__)
 

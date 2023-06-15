@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from storage import load_todos, save_todos, init_database
+from app.storage import load_todos, save_todos, init_database
 
 todos_routes = Blueprint('todos_routes', __name__)
 conn = init_database()  # Initialize the in-memory database connection
