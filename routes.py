@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from storage import load_todos, save_todos
+from storage import load_todos, save_todos, init_database
 
 todos_routes = Blueprint('todos_routes', __name__)
-todos = load_todos()
+conn = init_database()  # Initialize the in-memory database connection
+todos = load_todos(conn)
 
 
 @todos_routes.route('/todos', methods=['GET'])
@@ -15,7 +16,7 @@ def todo_list():
 def add_todo():
     todo_item = request.form['todo_item']
     todos.append(todo_item)
-    save_todos(todos)
+    save_todos(conn, todos)
     return redirect(url_for('todos_routes.todo_list'))
 
 
